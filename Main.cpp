@@ -1,16 +1,10 @@
+//File: Main.cpp
+#include <iostream>
 #include "Menu.h"
-#include "Menu.cpp"
 
-//Main function 
 int main() {
-	init_mainMenu();
+    init_mainMenu();
     return 0;
 }
-
-
-
-
-
-
 
 
