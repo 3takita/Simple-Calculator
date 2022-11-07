@@ -1,143 +1,136 @@
+//File: Menu.cpp
 #include <iostream>
 #include <cmath>
 #include "Menu.h"
+using namespace std;
 
-//init_mainMenu
-void init_mainMenu() { //Menu.cpp
+//Precondition: User makes a menu selection
+//Postcondition: Matches user selection with menu options and runs the selected function
+void init_mainMenu() {
 	Math calc;
-    do {
-        switch (menuOption()) {
-            case 0: exit(1); break; //if option is 0, exit program
-            case 1: 
-                system("cls");
-                calc.add();
-                break;
-            case 2:
-                system("cls");
-                calc.subtract();
-                break;
-            case 3: 
-                system("cls");
-                calc.multiply();
-                break;
-            case 4: 
-                system("cls");
-                calc.divide();
-                break;
-            case 5: 
-                system("cls");
-                calc.exponent();
-                break;
-            default: cout<<"\t\tInvalid Option. Try again: "; break;
-        }
-        cout<<"\n";
-        system("pause");
-        system("cls");
-    }while(true);
+	do {
+		switch (menuOption()) {
+		case 0: exit(1); break;
+		case 1:
+			system("cls");
+			calc.add();
+			break;
+		case 2:
+			system("cls");
+			calc.subtract();
+			break;
+		case 3:
+			system("cls");
+			calc.multiply();
+			break;
+		case 4:
+			system("cls");
+			calc.divide();
+			break;
+		case 5:
+			system("cls");
+			calc.exponent();
+			break;
+		default: cout << "\t\tInvalid Option. Chose from 0 to 5: "; break;
+		}
+		cout << "\n";
+		system("pause");
+		system("cls");
+	} while (true);
 }
 
-//PreCondition: User input must be integer  
-//PostCondition: Validates input and returns an integer 
-double inputInteger(string prompt, double input) { //Input.cpp
-	do
-	{ //input validation
+//PreCondition: User input must be integer
+//PostCondition: Validates input and returns and integer
+double inputNum(string prompt, double input) {
+	do {
 		cout << prompt;
-		if (!(cin >> input)) { 
-			cout << "Error! Input must be an integer. "; 
-			cin.clear();       
-			cin.ignore(999, '\n'); 
+		if (!(cin >> input)) {
+			cout << "Error! Input must be an integer. ";
+			cin.clear();
+			cin.ignore(999, '\n');
 		}
-		else                   
-			break;             
+		else
+			break;
 	} while (true);
-	cin.clear();              
+	cin.clear();
 	cin.ignore(999, '\n');
 	return input;
 }
 
-//first number input
-double num1() { //Input.cpp
-	double _m = inputInteger("Enter first number: ", 0);
+//Precondition: User input must be a number of integer or double type
+//Postcondition: Validates user input and returns the number entered
+double num1() {
+	double _m = inputNum("Enter first number: ", 0);
 	return _m;
 }
-//second number input
-double num2() { //Input.cpp
-	double _n = inputInteger("Enter second number: ", 0);
+//Precondition: User input must be a number of integer or double type
+//Postcondition: Validates user input and returns the number entered
+double num2() {
+	double _n = inputNum("Enter second number: ", 0);
 	return _n;
 }
 
-//Menu Options (1)
-int menuOption() { //Menu.cpp
-    cout<<"\n\tCALCULATOR APPLICATION"
-        <<"\n-— -— -— -— -— -— -— -"
-        <<"\n\t 1. Addition"
-        <<"\n\t 2. Subtraction"
-        <<"\n\t 3. Multiplication"
-        <<"\n\t 4. Division"
-        <<"\n\t 5. Exponent"
-        <<"\n-— -— -— -— -— -— -— -"
-        <<"\n\t 0. Exit"
-        <<"\n-— -— -— -— -— -— -— -"<<endl;
-    return inputInteger("\tSelect option: ", 5);
+//Precondition: User menu selection must be an integer from 0 to 5
+//Postcondition: Returns the selected menu choice
+int menuOption() {
+	cout << "\n\tCALCULATOR APPLICATION by Stephen D 11/6/22"
+		<< "\n\t" << string(60, char(205))
+		<< "\n\t 1. Add"
+		<< "\n\t 2. Subtract"
+		<< "\n\t 3. Multiply"
+		<< "\n\t 4. Divide"
+		<< "\n\t 5. Exponent"
+		<< "\n\t" << string(60, char(196))
+		<< "\n\t 0. Exit"
+		<< "\n\t" << string(60, char(205)) << endl;
+	return inputNum("\tSelect Option: ", 5);
 }
 
-	//Class constructor(s)
-	Math::Math() {double m, n = 0;}
-	Math::Math(const double& _m, const double& _n) {
-		n = _n; 
-		m = _m;
-	}
-	//setter(s)
-	void Math::setM(const double& _m) {
-		m = _m;
-	}
-	void Math::setN(const double& _n) {
-		n = _n;
-	}
-	//getter(s)
-	double Math::getN() {return n;}
-	double Math::getM() {return m;}
-	// member functions 
-	
-    //Preconditon:
-    //Postcondition:
-    void Math::add() {
-    	double a = num1();
-    	double b = num2();
-    	cout<<a<<" + "<<b<<" = "<<a+b<<endl;
-    }
 
-    //Preconditon:
-    //Postcondition:
-    void Math::subtract() {
-    	double a = num1();
-    	double b = num2();
-    	cout<<a<<" - "<<b<<" = "<<a-b<<endl;
-    }
-
-    //Preconditon:
-    //Postcondition:
-    void Math::multiply() {
-        double a = num1();
-    	double b = num2();
-    	cout<<a<<" * "<<b<<" = "<<a*b<<endl;
-    }
-
-    //Preconditon:
-    //Postcondition:
-    void Math::divide() {
-        double a = num1();
-    	double b = num2();
-    	cout<<a<<" / "<<b<<" = "<<a/b<<endl;
-    }
-
-    //Preconditon:
-    //Postcondition:
-    void Math::exponent() {
-        double a = num1();
-    	double b = num2();
-    	cout<<a<<" ^ "<<b<<" = "<<pow(a,b)<<endl;
-    }
-
-
-
+//Class constructor
+Math::Math() { double m = 0; double n = 0; }
+//setters
+void Math::setM(const double& _m) {
+	m = _m;
+}
+void Math::setN(const double& _n) {
+	n = _n;
+}
+//getters
+double Math::getN() { return n; }
+double Math::getM() { return m; }
+//Precondition: User input must be positive, negative, decimal or whole numbers
+//Postcondition: Computes and prints the sum of the numbers to the screen
+void Math::add() {
+	double a = num1();
+	double b = num2();
+	cout << a << " + " << b << " = " << a + b << endl;
+}
+//Precondition: User input must be positive, negative, decimal or whole numbers
+//Postcondition: Computes and prints the difference betweem the numbers to the screen
+void Math::subtract() {
+	double a = num1();
+	double b = num2();
+	cout << a << " - " << b << " = " << a - b << endl;
+}
+//Precondition: User input must be positive, negative, decimal or whole numbers
+//Postcondition: Computes and prints the product of the numbers to the screen
+void Math::multiply() {
+	double a = num1();
+	double b = num2();
+	cout << a << " x " << b << " = " << a * b << endl;
+}
+//Precondition: User input must be positive, negative, decimal or whole numbers
+//Postcondition: Computes and prints the quotient of the numbers to the screen
+void Math::divide() {
+	double a = num1();
+	double b = num2();
+	cout << a << " / " << b << " = " << a / b << endl;
+}
+//Precondition: User input must be positive, negative, decimal or whole numbers
+//Postcondition: Computes and prints the first number raised to the power of the second
+void Math::exponent() {
+	double a = num1();
+	double b = num2();
+	cout << a << " ^ " << b << " = " << pow(a, b) << endl;
+}
