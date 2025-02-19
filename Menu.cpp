@@ -7,7 +7,7 @@ using namespace std;
 //Precondition: User makes a menu selection
 //Postcondition: Matches user selection with menu options and runs the selected function
 void init_mainMenu() {
-	Math calc;
+	Math calc; //This is a test
 	do {
 		switch (menuOption()) {
 		case 0: exit(1); break;
